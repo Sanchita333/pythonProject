@@ -10,11 +10,11 @@ class BookNode:
     def __init__(self, bookId, title, author, isbn):
         # Input validation for bookId
         if not isinstance(bookId, int) or bookId <= 0:
-            raise LibraryError("Book ID must be a positive integer")
+            raise ValueError("Book ID must be a positive integer")
         
         # Input validation for strings
         if not all(isinstance(x, str) and x.strip() for x in [title, author, isbn]):
-            raise LibraryError("Title, author, and ISBN must be non-empty strings")
+            raise ValueError("Title, author, and ISBN must be non-empty strings")
 
         self.bookId = bookId  # Unique identifier for the book
         self.title = title  # Title of the book
