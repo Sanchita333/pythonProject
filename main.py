@@ -115,8 +115,9 @@ class LibraryManagementSystem:
         book = self._searchBook(self.books_root, bookId)
         if book:
             availability = "Yes" if book.available else "No"
-            return f'''Book Details for ID {bookId}:
-            - "{book.title}" by {book.author}, ISBN: {book.isbn}, Available: {availability}'''
+            return f'Book Details for ID {bookId}:\n- "{book.title}" by {book.author}, ISBN: {book.isbn}, Available: {availability}'
+        #     return f'''Book Details for ID {bookId}:
+        #     - "{book.title}" by {book.author}, ISBN: {book.isbn}, Available: {availability}'''
         return f'Book ID {bookId} not found.'
 
     # Helper function to add a patron into the BST
