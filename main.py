@@ -1,4 +1,5 @@
 import logging
+import re
 import time  # Added to calculate execution time
 
 # Configure logging for debugging output
@@ -8,6 +9,18 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %
 # Node class representing each book in the library
 class BookNode:
     def __init__(self, bookId, title, author, isbn):
+        # Input validation for bookId
+        if not isinstance(bookId, int) or bookId <= 0:
+            raise LibraryError("Book ID must be a positive integer")
+        
+        # Input validation for strings
+        if not all(isinstance(x, str) and x.strip() for x in [title, author, isbn]):
+            raise LibraryError("Title, author, and ISBN must be non-empty strings")
+            
+        # ISBN validation (basic check for 13 digits)
+        if not re.match(r'^\d{13}$', isbn.replace('-', '')):
+            raise LibraryError("ISBN must be a valid 13-digit number")
+
         self.bookId = bookId  # Unique identifier for the book
         self.title = title  # Title of the book
         self.author = author  # Author of the book
