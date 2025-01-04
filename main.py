@@ -1,5 +1,4 @@
 import logging
-import re
 import time  # Added to calculate execution time
 
 # Configure logging for debugging output
@@ -16,10 +15,6 @@ class BookNode:
         # Input validation for strings
         if not all(isinstance(x, str) and x.strip() for x in [title, author, isbn]):
             raise LibraryError("Title, author, and ISBN must be non-empty strings")
-            
-        # ISBN validation (basic check for 13 digits)
-        if not re.match(r'^\d{13}$', isbn.replace('-', '')):
-            raise LibraryError("ISBN must be a valid 13-digit number")
 
         self.bookId = bookId  # Unique identifier for the book
         self.title = title  # Title of the book
